@@ -1,0 +1,79 @@
+using Microsoft.AspNetCore.Mvc;
+using TaskMaster.Models;
+using TaskMaster.Services;
+
+namespace TaskMaster.Controllers;
+
+public class TaskController : Controller
+{
+    private readonly TaskService _taskService;
+
+    public TaskController(TaskService taskService)
+    {
+        _taskService = taskService;
+    }
+
+    public ActionResult Index()
+    {
+        var tasks = _taskService.GetTasks();
+        return View(tasks);
+    }
+
+    public ActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(TaskViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        _taskService.CreateTask(model.Description, model.DueDate);
+        return RedirectToAction("Index");
+    }
+
+    public ActionResult Update(int id)
+    {
+        var task = _taskService.GetTask(id);
+        if (task == null)
+        {
+            return RedirectToAction("Index");
+        }
+
+        return View(task);
+    }
+
+    [HttpPost]
+    public ActionResult Update(TaskItem taskItem)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(taskItem);
+        }
+
+        _taskService.UpdateTask(taskItem);
+        return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+        var task = _taskService.GetTask(id);
+        if (task == null)
+        {
+            return RedirectToAction("Index");
+        }
+
+        return View(task);
+    }
+
+    [HttpPost]
+    public ActionResult Delete(TaskItem taskItem)
+    {
+        _taskService.DeleteTask(taskItem);
+        return RedirectToAction("Index");
+    }
+}
