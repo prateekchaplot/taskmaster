@@ -4,11 +4,11 @@ using TaskMaster.Services;
 
 namespace TaskMaster.Controllers;
 
-public class TaskController : Controller
+public class TaskItemController : Controller
 {
     private readonly TaskService _taskService;
 
-    public TaskController(TaskService taskService)
+    public TaskItemController(TaskService taskService)
     {
         _taskService = taskService;
     }
@@ -36,7 +36,7 @@ public class TaskController : Controller
         return RedirectToAction("Index");
     }
 
-    public ActionResult Update(int id)
+    public ActionResult Edit(int id)
     {
         var task = _taskService.GetTask(id);
         if (task == null)
@@ -48,7 +48,7 @@ public class TaskController : Controller
     }
 
     [HttpPost]
-    public ActionResult Update(TaskItem taskItem)
+    public ActionResult Edit(TaskItem taskItem)
     {
         if (!ModelState.IsValid)
         {
