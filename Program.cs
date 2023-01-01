@@ -1,7 +1,12 @@
+using TaskMaster.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add the TaskService as a service
+builder.Services.AddSingleton<TaskService>();
 
 var app = builder.Build();
 
