@@ -1,0 +1,20 @@
+@model TaskItem
+
+@{
+    ViewData["Title"] = "TaskItem";
+}
+
+<h3>Edit</h3>
+<hr>
+<form asp-action="Delete">
+    <div>
+        <input type="hidden" asp-for="Id" />
+        Are you sure you want to delete the task "@Model.Description"?
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+</form>
+
+<div><a asp-action="Index">Back To List</a></div>

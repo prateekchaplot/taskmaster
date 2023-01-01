@@ -1,0 +1,37 @@
+@model TaskItem
+
+@{
+    ViewData["Title"] = "TaskItem";
+}
+
+<h3>Edit</h3>
+<hr>
+<form asp-action="Edit">
+    <div asp-validation-summary="All"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div>
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <div>
+        <label asp-for="DueDate"></label>
+        <input asp-for="DueDate" class="form-control" />
+        <span asp-validation-for="DueDate"></span>
+    </div>
+
+    <div>
+        <label asp-for="IsCompleted"></label>
+        <input asp-for="IsCompleted" />
+        <span asp-validation-for="IsCompleted"></span>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</form>
+
+<div><a asp-action="Index">Back To List</a></div>
