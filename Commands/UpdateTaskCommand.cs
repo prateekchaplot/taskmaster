@@ -8,11 +8,11 @@ public class UpdateTaskCommand : ICommand
     private readonly DateTime _dueDate;
     private readonly bool _isCompleted;
 
-    public UpdateTaskCommand(string description, DateTime dueDate, bool isCompleted)
+    public UpdateTaskCommand(TaskItem task)
     {
-        _description = description;
-        _dueDate = dueDate;
-        _isCompleted = isCompleted;
+        _description = task.Description;
+        _dueDate = task.DueDate;
+        _isCompleted = task.IsCompleted;
     }
 
     public void Execute(TaskItem taskItem)

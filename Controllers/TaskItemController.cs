@@ -13,9 +13,9 @@ public class TaskItemController : Controller
         _taskService = taskService;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-        var tasks = _taskService.GetTasks();
+        var tasks = await _taskService.GetTasks();
         return View(tasks);
     }
 
