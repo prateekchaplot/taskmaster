@@ -1,6 +1,6 @@
 using TaskMaster.Models;
 
-namespace TaskMaster.Commands;
+namespace TaskMaster.Interfaces;
 
 public interface ICommand
 {

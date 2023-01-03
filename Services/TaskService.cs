@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using TaskMaster.Commands;
+using TaskMaster.Interfaces;
 using TaskMaster.Models;
 
 namespace TaskMaster.Services;
