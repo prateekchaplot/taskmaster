@@ -76,4 +76,10 @@ public class TaskItemController : Controller
         _taskService.DeleteTask(taskItem);
         return RedirectToAction("Index");
     }
+
+    public async Task<ActionResult> History(int taskId)
+    {
+        var mementos = await _taskService.GetHistory(taskId);
+        return View(mementos);
+    }
 }

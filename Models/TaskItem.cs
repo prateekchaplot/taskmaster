@@ -9,7 +9,7 @@ public class TaskItem
 
     public TaskMemento Save()
     {
-        return new TaskMemento(this);
+        return TaskMemento.Snapshot(this);
     }
 
     public void Restore(TaskMemento taskMemento)

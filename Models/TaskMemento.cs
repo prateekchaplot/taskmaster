@@ -11,12 +11,15 @@ public class TaskMemento : IMemento
     public DateTime DueDate { get; set; }
     public DateTime ActionDate { get; set; }
 
-    public TaskMemento(TaskItem task)
+    public static TaskMemento Snapshot(TaskItem task)
     {
-        TaskId = task.Id;
-        Description = task.Description;
-        IsCompleted = task.IsCompleted;
-        DueDate = task.DueDate;
-        ActionDate = DateTime.Now;
+        return new TaskMemento
+        {
+            TaskId = task.Id,
+            Description = task.Description,
+            IsCompleted = task.IsCompleted,
+            DueDate = task.DueDate,
+            ActionDate = DateTime.Now
+        };
     }
 }

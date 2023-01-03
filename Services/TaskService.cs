@@ -25,7 +25,6 @@ public class TaskService
     public async Task<List<TaskItem>> GetTasks()
     {
         var tasks = await _context.Tasks.ToListAsync();
-        _logger.LogInformation("[GetTasks] {tasks}", JsonSerializer.Serialize(tasks));
         return tasks;
     }
 
