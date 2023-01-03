@@ -10,20 +10,20 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Task</th>
-            <th>Action</th>
             <th>Action Date</th>
-            <th></th>
+            <th>Description</th>
+            <th>Is Completed</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var task in Model)
+        @foreach (var memento in Model)
         {
             <tr>
-                <td>@task.ActionDate</td>
-                <td>@task.Description</td>
-                <td>@task.IsCompleted</td>
-                <td><a asp-action="Restore">Restore</a></td>
+                <td>@memento.ActionDate</td>
+                <td>@memento.Description</td>
+                <td>@memento.IsCompleted</td>
+                <td><a asp-action="Restore" asp-route-mementoId="@memento.Id">Restore</a></td>
             </tr>
         }
     </tbody>

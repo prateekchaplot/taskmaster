@@ -79,7 +79,13 @@ public class TaskItemController : Controller
 
     public async Task<ActionResult> History(int taskId)
     {
-        var mementos = await _taskService.GetHistory(taskId);
+        var mementos = await _taskService.GetTaskHistory(taskId);
         return View(mementos);
+    }
+
+    public async Task<ActionResult> Restore(int mementoId)
+    {
+        await _taskService.RestoreTask(mementoId);
+        return RedirectToAction("Index");
     }
 }

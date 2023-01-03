@@ -25,6 +25,7 @@
                 <td>@task.IsCompleted</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@task.Id">Edit</a> |
+                    <a asp-action="History" asp-route-taskId="@task.Id">History</a> |
                     <a asp-action="Delete" asp-route-id="@task.Id">Delete</a>
                 </td>
             </tr>

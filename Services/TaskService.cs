@@ -64,11 +64,20 @@ public class TaskService
         command.Execute(taskItem);
     }
 
-    public async Task<IEnumerable<TaskMemento>> GetHistory(int taskId)
+    public async Task<IEnumerable<TaskMemento>> GetTaskHistory(int taskId)
     {
         return await _context.TaskHistory
             .Where(x => x.TaskId == taskId)
             .OrderByDescending(x => x.ActionDate)
             .ToListAsync();
+    }
+
+    public async Task RestoreTask(int mementoId)
+    {
+        var memento = await _context.TaskHistory.FirstOrDefaultAsync(x => x.Id == mementoId);
+        var task = await _context.Tasks.FirstOrDefaultAsync(x => x.Id == memento.TaskId);
+        task.Restore(memento);
+        _context.Tasks.Update(task);
+        _context.SaveChanges();
     }
 }
