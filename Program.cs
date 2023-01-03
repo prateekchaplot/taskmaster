@@ -1,12 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using TaskMaster;
 using TaskMaster.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add in-memory database
+builder.Services.AddDbContext<AppDbContext>(x => x.UseInMemoryDatabase("A"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // Add the TaskService as a service
-builder.Services.AddSingleton<TaskService>();
+builder.Services.AddScoped<TaskService>();
 
 var app = builder.Build();
 
