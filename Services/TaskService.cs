@@ -35,6 +35,7 @@ public class TaskService
         var taskItem = new TaskItem();
         ExecuteCommand(command, taskItem);
         _context.Tasks.Add(taskItem);
+        _context.TaskHistory.Add(taskItem.Save());
         _context.SaveChanges();
     }
 
@@ -43,6 +44,7 @@ public class TaskService
         var command = new UpdateTaskCommand(taskItem);
         ExecuteCommand(command, taskItem);
         _context.Update(taskItem);
+        _context.TaskHistory.Add(taskItem.Save());
         _context.SaveChanges();
     }
 
@@ -51,11 +53,23 @@ public class TaskService
         var command = new DeleteTaskCommand();
         ExecuteCommand(command, taskItem);
         _context.Remove(taskItem);
+
+        var entities = _context.TaskHistory.Where(x => x.TaskId == taskItem.Id);
+        _context.TaskHistory.RemoveRange(entities);
+        
         _context.SaveChanges();
     }
 
     public void ExecuteCommand(ICommand command, TaskItem taskItem)
     {
         command.Execute(taskItem);
+    }
+
+    public async Task<IEnumerable<TaskMemento>> GetHistory(int taskId)
+    {
+        return await _context.TaskHistory
+            .Where(x => x.TaskId == taskId)
+            .OrderByDescending(x => x.ActionDate)
+            .ToListAsync();
     }
 }
