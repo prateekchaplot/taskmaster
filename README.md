@@ -9,5 +9,5 @@ The application also includes a history feature that allows users to view a list
 
 ### How to run
 ```
->> run.cmd
+dotnet run
 ```
