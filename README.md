@@ -1,3 +1,5 @@
+![dotnet](https://github.com/prateekchaplot/taskmaster/actions/workflows/dotnet.yml/badge.svg?branch=master)
+
 # TaskMaster
 
 ## Synopsis
