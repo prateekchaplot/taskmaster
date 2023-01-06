@@ -1,4 +1,4 @@
-![dotnet](https://github.com/prateekchaplot/taskmaster/actions/workflows/dotnet.yml/badge.svg?branch=master)
+![dotnet](https://github.com/prateekchaplot/taskmaster/actions/workflows/dotnet.yml/badge.svg?branch=main)
 
 # TaskMaster
 
